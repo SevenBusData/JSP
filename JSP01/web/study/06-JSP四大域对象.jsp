@@ -23,7 +23,7 @@
                 在整个应用中有效
             JSP中跳转方式
                 1,服务端跳转
-                    <jsp:forward page-"跳转的地址"></jsp:forward>
+                    <jsp:forward page="跳转的地址"></jsp:forward>
                 2.客户端跳转
                     超链接
 
