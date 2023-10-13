@@ -1,6 +1,6 @@
 # JSP
 JSP学习  
-##JSP中一种有两种类型的注释: 
+## JSP中一种有两种类型的注释: 
 1. 显示注释： 
 **能够在客户端查看的注释**  
 * 继承html风格的注释  
@@ -121,3 +121,165 @@ JSP学习
         空对象：false  
     * 注: 判断域对象不为空   
          ${!empty 限域对象变量名}  
+## jstl标签
+### JSTL的使用
+  1. 在pom文件中导入JSTL所需要的两个jar包
+  2. 在需要使用的标签库的JSP页面通过taglib标签引入指定库
+### if标签
+ **格式：**
+```jsp
+ <c:if test="<boolean>" var="<string>" scope="<string>">  
+ ...
+ </c:if>
+```
+ 
+ **常用属性：**  
+ test:条件判断，操作的是域对象，接收返回结果是boolean类型的值（必要属性）  
+ var:限域变量名（存放在作用域中的变量名），用来接收判断结果的值（可选属性）  
+ scope:限域变量名的范围(page,request, session,application)(可选属性)  
+ **注：**
+ 1. 标签操作的一般都是域对象  
+ 2. if标签标签没有else,如果想要else的效果，就需要设置两个完全相反的条件  
+### choose、when、otherwise标签:
+**格式**
+```jsp
+    <c:choose>
+        <c:when test="${表达式}">
+            <c:if test="${表达式}">
+                <c:out value="${表达式}"></c:out>
+            </c:if>
+        </c:when>
+        <c:otherwise>
+            <c:out value="${表达式}"></c:out>
+        </c:otherwise>
+    </c:choose>
+```
+
+**作用**  
+  1. choose标签可以有多个when标签，当when标签的test属性为true时，执行when标签中的内容  
+  2. otherwise标签没有test属性，当choose标签中没有when标签的test属性为true时，执行otherwise标签中的内容
+  3. when标签和otherwise标签可以有多个，但是只能有一个是执行的  
+
+**属性**
+  1. choose标签没有属性
+  2. when标签只有一个test属性，必须属性
+  3. otherwise标签没性  
+
+**注意:**
+  1. choose标签中必须要有when标签，而otherwise标签可以没有
+  2. choose和oterwise标签没有属性，而when标签必须要有一个test属性
+  3. otherwise标签必须设置在最后一个when标签之后
+  4. choose标签中只能设置when标签和otherwise标签，而when标签和otherwise标签可以嵌套其他标签
+  5. otherwise标签会在所有when标签都不执行的时候执行  
+### forEach标签
+  **格式：**
+```jsp
+    <c: forEach
+      itens-"<object>"
+      begin="<int>"
+      end="<int>"
+      step-"cint"
+      var="<string>"
+      varstatus="<string>">
+    </c:forEach>
+```
+          
+  **属性：**
+      begin: 开始数  
+      end: 结束数  
+      step: 间隔数  
+      var: 限域变量名，用来接收当前遍历的成员  
+      items: 要循环的数据（数组、List、Map等）   
+  1. 迭代主体内容多次  
+      <c:forEach begin="开始数" end="结束数" step="间隔数" var="限域变量名">  
+      </c:forEach>  
+      相当于Java中for...int  
+      for (int i = 0; i < 10: i++) {  
+      }  
+  2. 循环  
+      <c:forEach items="要被循环的数据"  var="限域变量名">  
+      </c:forEach>  
+      相当于Java中的forEach  
+      for (Object item : items) {  
+      }  
+### 格式化动作标签
+#### fornatumber标签
+  **将数值型转化成指定格式的字符**
+  **语法格式**
+```jsp
+    <fmt: formatNumber
+      value="<string>"
+      type="<string>"
+      var"<string>"
+      scope="<string>"/>
+```
+        
+**常用属性：**  
+ value:要格式化的数值  
+ type:要格式化的型:  
+  * number 数值型 (默认)  
+  * percent  百分比类型  
+  * currency 货币类型  
+
+ var:限域变量名，用来接收格式化的结果  
+ scope:var属性的范围（page|request|session|application）  
+
+
+**注:**
+1. 如果使用var属性标签不会输出结果，需要使用EL表达式输出  
+2. type类型默认时number  
+
+#### formatDate标签
+**将Date型的数据转化成指定格式的字符串**
+**语法格式：**
+```jsp
+<fmt: formatDate
+ value="<string>"
+ type"<string>"
+ dateStyle="<string>"
+ timestyle="<string>"
+ pattern-"<string>"
+ tineZone="<string>"
+ var="<string>"
+ scope"string>"/>
+```
+    
+ **常用属性：**  
+  value:要格式化的日期   
+  type:格式化的类型   
+   * date 日期型 年月日  
+   * time 时间型 时分秒  
+   * both 日期时间型  
+
+  datestyle:日期格式  
+  tiestyle: 日期时间  
+  pattern:白定义模式   
+    y M d H m s  
+  timeZone  
+  var  
+  scope   
+#### parseNumber标签
+ **将指定格式的数值字符串转化成数值型**
+ **语法格式：**  
+```jsp
+    <fmt: parseNumber
+      value="<string>"
+      type="<string>"
+      var="<string>"
+      scope="<string>"/>
+```
+      
+#### parseDate标签
+ **将日期型的字符串转换成Date型**
+ **格式语法：**
+```jsp
+    <fmt:parseDate
+      value="<string>"
+      type="<string>"
+      dateStyle="<string
+      timeStyle="<string
+      pattern="<string>"
+      var="<string>"
+      scope="<string>"/>
+```
+      
