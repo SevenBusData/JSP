@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/JSP01/pom.xml" />
+        <option value="$PROJECT_DIR$/loginProject/pom.xml" />
       </list>
     </option>
   </component>
