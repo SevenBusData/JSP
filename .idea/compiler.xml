@@ -6,13 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="JSP02" />
         <module name="JSP01" />
         <module name="loginProject" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="JSP01" target="1.5" />
-      <module name="loginProject" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

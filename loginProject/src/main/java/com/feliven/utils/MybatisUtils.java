@@ -9,10 +9,9 @@ import java.io.InputStream;
 
 public class MybatisUtils {
     public static SqlSession createSqlSession() {
-        String resource = "src/main/resources/mybatis-config.xml";
         SqlSession sqlSession = null;
         try {
-            InputStream inputStream = Resources.getResourceAsStream(resource);
+            InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
             sqlSession = new SqlSessionFactoryBuilder().build(inputStream).openSession();
         } catch (Exception e) {
             System.out.println("没有连接到对应到mybatis-config.xml文件");

@@ -51,7 +51,7 @@ public class UserService {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 //        System.out.println(mapper);
         User user = mapper.queryUserByName(uname);
-
+//        System.out.println(user);
         //  3、判断用户对象是否为空
         if (user == null) {
             //  将状态码、提示信息、回显数据设置到消息模块对象中，返回消息模型对象

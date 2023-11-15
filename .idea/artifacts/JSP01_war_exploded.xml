@@ -19,8 +19,8 @@
           <element id="library" level="project" name="Maven: org.apache.ibatis:ibatis-core:3.0" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="JSP01/web/Web" />
       <element id="javaee-facet-resources" facet="loginProject/web/Web" />
+      <element id="javaee-facet-resources" facet="JSP01/web/Web" />
     </root>
   </artifact>
 </component>
